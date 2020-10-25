@@ -74,6 +74,18 @@ app.put('/api/courses/:id',(req,res)=>{
 
         return res.send(course);
 
+})
+// proses delete data berdasarkan id
+app.delete('/api/courses/:id',(req,res)=>{
+    const course=courses.find(c=>c.id==parseInt(req.params.id));
+    if(!course){
+        return res.status(404).json({msg:'data tidak ditemukan'});
+    }
+    const RemoveIndex=courses.indexOf(course);
+    courses.splice(RemoveIndex,1);
+    return res.json(courses);
+
+    
 
 })
 
